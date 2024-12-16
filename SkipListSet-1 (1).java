@@ -9,7 +9,6 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
 
     private SkipListSetItem<T>[] head;
 
-
     private Comparator<? super T> comp;
 
     LinkedList<LinkedList<SkipListSetItem<T>>> nodes = new LinkedList<>();
@@ -85,7 +84,7 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
                 node = node.up;
             }
 
-            while (activeHeight > 1 && head[activeHeight].next == null) { //if any level only has a null pointer we remove it
+            while (activeHeight > 1 && head[activeHeight].next == null) { //if any level only has a null pointer we remove it and decreases the height
                 head[activeHeight] = null;
                 activeHeight--;
             }
@@ -271,7 +270,7 @@ public class SkipListSet<T extends Comparable<T>> implements SortedSet<T> {
             while (node.next != null && node.next.value.compareTo(e) <= 0) {   //checking bottom layer if there are any more nodes to traverse through to insert correctly
                 node = node.next;
             }
-            return node;  //returns the node before the node to insert will go
+            return node;  //returns the node before the 'node to insert' will go
         }
         return null;
     }
